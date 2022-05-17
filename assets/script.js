@@ -2,13 +2,14 @@ const cpf = document.querySelector("#cpf");
 const notify = document.querySelector("#notify");
 
 function validador() {
-  let exCpf = cpf.value;
-  exCpf = exCpf.split("");
+  let valorCPF = cpf.value;
+  valorCPF = valorCPF.replace(/[\D]+/g, "").replace("-", "");
+  valorCPF = valorCPF.split("");
   if (
-    exCpf.length != 11 ||
-    verificadorInvalidos(exCpf) ||
-    validadorPrimeiroDigito(exCpf) != exCpf[9] ||
-    validadorSegundoDigito(exCpf) != exCpf[10]
+    valorCPF.length != 11 ||
+    verificadorInvalidos(valorCPF) ||
+    validadorPrimeiroDigito(valorCPF) != valorCPF[9] ||
+    validadorSegundoDigito(valorCPF) != valorCPF[10]
   )
     return (
       (notify.innerHTML = "CPF invalido!"),
@@ -22,27 +23,27 @@ function validador() {
   );
 }
 
-function verificadorInvalidos(exCpf) {
+function verificadorInvalidos(valorCPF) {
   let count = 0;
-  exCpf.forEach((element) => {
-    if (exCpf[0] == element) count++;
+  valorCPF.forEach((element) => {
+    if (valorCPF[0] == element) count++;
   });
   if (count == 11) return true;
   return false;
 }
 
-function validadorPrimeiroDigito(exCpf) {
+function validadorPrimeiroDigito(valorCPF) {
   let contador = 0;
   for (let i = 0; i < 9; i++) {
-    contador += +exCpf[i] * (10 - i);
+    contador += +valorCPF[i] * (10 - i);
   }
   return (contador * 10) % 11;
 }
 
-function validadorSegundoDigito(exCpf) {
+function validadorSegundoDigito(valorCPF) {
   let contador = 0;
   for (let i = 0; i < 10; i++) {
-    contador += +exCpf[i] * (11 - i);
+    contador += +valorCPF[i] * (11 - i);
   }
   return (contador * 10) % 11;
 }
