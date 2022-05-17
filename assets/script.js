@@ -6,7 +6,7 @@ function validador() {
   exCpf = exCpf.split("");
   if (
     exCpf.length != 11 ||
-    validadorInvalidos(exCpf) ||
+    verificadorInvalidos(exCpf) ||
     validadorPrimeiroDigito(exCpf) != exCpf[9] ||
     validadorSegundoDigito(exCpf) != exCpf[10]
   )
@@ -22,7 +22,7 @@ function validador() {
   );
 }
 
-function validadorInvalidos(exCpf) {
+function verificadorInvalidos(exCpf) {
   let count = 0;
   exCpf.forEach((element) => {
     if (exCpf[0] == element) count++;
