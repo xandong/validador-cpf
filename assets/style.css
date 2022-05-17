@@ -65,6 +65,7 @@ section input:focus {
   background-color: deepskyblue;
   color: whitesmoke;
   border: none;
+  cursor: pointer;
   transition: 0.3s;
 }
 .btn:hover,
